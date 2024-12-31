@@ -47,7 +47,7 @@ class ListArray : public List<T> {
 			    ++n;
 		    }
 
-		    void appent(T e) override{
+		    void append(T e) override{
 			    insert(n, e);
 		    }
 
