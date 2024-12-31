@@ -32,7 +32,7 @@ class ListArray : public List<T> {
 
 		    void insert(int pos, T e) override{
 			    if(pos<0 || pos>n){
-				    throw std::out_of_range("Invalid position");
+				    throw std::out_of_range("Posición errónea.");
 			    }
 
 			    if(n==max){
@@ -47,9 +47,73 @@ class ListArray : public List<T> {
 			    ++n;
 		    }
 
+		    void appent(T e) override{
+			    insert(n, e);
+		    }
+
+		    void prepend(T e) override{
+			    insert(0, e);
+		    }
+
+		    T remove(int pos) override{
+			    if(pos<0 || pos>n){
+				    throw std::out_of_range("Posición errónea.");
+			    }
+
+			    T elemento_eliminado = arr[pos];
+			    
+			    for(int i=pos; i<n-1; ++i){
+				    arr[i] = arr[i+1];
+			    }
+			    --n;
+
+			    if(n>0 && n==max/4){
+				    resize(max/2);
+			    }
+
+			    return elemento_eliminado;
+		    }
+
+		    T get(int pos) override{
+			    if(pos<0 || pos>n){
+				    throw std::out_of_range("Posición errónea.");
+			    }
+
+			    return arr[pos];
+		    }
+
+		    int search(T e) override{
+			    for(int i=0; i<n; ++i){
+				    if(arr[i]==e){
+					    return i;
+				    }
+			    }
+
+			    return -1;
+		    }
+
+		    bool empty() override{
+			    return n==0;
+		    }
+
+		    int size() override{
+			    return n;
+		    }
 
 		    T operator[](int pos){
+			    return get(pos);
 		    }
-		    friend std::ostream& operator<<(std::ostream &out, const ListArray<T> &list);
+
+		    friend std::ostream& operator<<(std::ostream &out, const ListArray<T> &list){
+			    out << "[";
+			    for(int i=0; i<list.n; ++i){
+				    out << list.arr[i];
+				    if(i<list.n-1){
+					    out << ", ";
+				    }
+			    }
+			    out << "]";
+			    return out;
+		    }
  };
 
