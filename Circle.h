@@ -22,7 +22,7 @@ class Circle : public Shape{
 		double area() const override;
 		double perimeter() const override;
 		void translate(double incX, double incY) override;
-		void print() override;
+		void print(std::ostream &out) const override;
 
 		friend std::ostream& operator<<(std::ostream &out, const Circle &c);
 
