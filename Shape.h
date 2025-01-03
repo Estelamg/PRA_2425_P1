@@ -9,6 +9,7 @@
 class Shape{
 	protected:
 		std::string color;
+		bool is_valid_color(const std::string& c) const;
 
 	public:
 		Shape();

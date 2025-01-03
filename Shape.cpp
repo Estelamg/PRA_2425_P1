@@ -1,11 +1,15 @@
 #include "Shape.h"
 
+bool Shape::is_valid_color(const std::string& c) const{
+	return c == "red" || c == "green" || c == "blue";
+}
+
 Shape::Shape(){
 	color = "red";
 }
 
 Shape::Shape(std::string color){
-	if(color != "red" || color != "green" || color != "blue"){
+	if(!is_valid_color(color)){
 		throw std::invalid_argument("El color no es válido");
 	}
 
@@ -17,7 +21,7 @@ std::string Shape::get_color() const{
 }
 
 void Shape::set_color(std::string c){
-	if(c!="red" || c!="green" || c!="blue"){
+	if(!is_valid_color(c)){
 		throw std::invalid_argument("El color no es válido");
 	}
 	
