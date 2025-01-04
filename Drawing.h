@@ -5,6 +5,8 @@
 #include "Shape.h"
 #include "List.h"
 #include "ListLinked.h"
+#include "Circle.h"
+#include "Square.h"
 
 class Drawing {
 	private:
